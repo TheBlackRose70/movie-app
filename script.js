@@ -28,21 +28,30 @@ function showMovies(movies) {
     ('div')
     movieEl.classList.add('movie')
     movieEl.innerHTML = `
-    <div class="movie">
-      <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="">
-      <div class="movie-info">
-        <h3>Movie Title</h3>
-          <span class="green">9.8</span>
-      </div>
-      <div class="overview">
-        <h3>Overview</h3>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Aliquid itaque eius repellendus vel aperiam iure id aspernatur 
-        labore ad iste.
-      </div>
-    </div>
+            <img src="${IMG_PATH + poster_path}" 
+        alt="${title}">
+        <div class="movie-info">
+      <h3>${title}</h3>
+      <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+          </div>
+        <div class="overview">
+      <h3>Overview</h3>
+      ${overview}
+      </div>    
     `
+
+      main.appendChild(movieEl)
   })
+}
+
+function getClassByRate(vote) {
+  if(vote >=8) {
+    return 'green'
+  } else  if(vote >=5) {
+    return 'orange'
+  } else {
+    return 'red'
+  }
 }
 
 form.addEventListener('submit', (e) => {
